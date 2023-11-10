@@ -3,10 +3,49 @@
 
 .header {
 
+  padding: 15px 0;
   &__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__input {
+    position: relative;
+  }
+
+  &__input-img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 11px;
+    width: 17px;
+    height: 17px;
+  }
+
+  &__input-text {
+    width: 225px;
+    height: 30px;
+    border: 1px solid $white;
+    border-radius: 15px;
+    padding: 0 0 0 40px;
+    outline: transparent;
+    transition: border-color 0.3s ease-in;
+    background-color: transparent;
+    color: $white;
+    &:focus {
+      border-color: $yellow;
+      transition: border-color 0.3s ease-in;
+    }
+  }
+
+  &__input-close {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    font-size: 33px;
+    color: red;
   }
 
 }

@@ -1,17 +1,38 @@
 import "./header.scss";
-
+import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { searchHandler, closeSearchHandler } from "../redux/slices/searchClise";
 
 const Header = () => {
+  const search = useSelector((state) => state.search.search);
+  const dispatch = useDispatch();
+
   return (
     <header className="header">
       <div className="header__container">
         <div className="header__top">
           <div className="header__input">
+            <img
+              className="header__input-img"
+              src="images/search.png"
+              alt="search"
+            />
+            {search && (
+              <button
+                className="header__input-close btn-reset"
+                type="button"
+                onClick={() => dispatch(closeSearchHandler())}
+              >
+                &times;
+              </button>
+            )}
             <input
-              type="text"
               className="header__input-text"
+              type="text"
               placeholder="Search"
+              value={search}
+              onChange={(e) => dispatch(searchHandler(e.target.value))}
             />
           </div>
           <Link to="/" className="header__logo">
@@ -23,7 +44,7 @@ const Header = () => {
             </button>
             <button className="header__de btn-reset" type="button">
               DE
-            </button>{" "}
+            </button>
             |
           </div>
           <Link to="basket" className="header__corb btn-reset">
@@ -34,10 +55,10 @@ const Header = () => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0_12004_18)">
+              <g clipPath="url(#clip0_12004_18)">
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M8.75865 16.9116L8.125 16.25L7.62024 15.3076L5.33476 2.8633C5.28452 2.59056 5.09727 2.36303 4.83902 2.26171L1.09578 0.791145C0.683232 0.629627 0.217699 0.832266 0.0556768 1.24431C-0.106065 1.65659 0.096518 2.1224 0.508846 2.28442L3.83718 3.59195L6.163 16.2547C6.2331 16.6353 6.56486 16.9118 6.95207 16.9118H7.33788L6.45689 19.3589C6.38315 19.5639 6.41353 19.7916 6.53902 19.9697C6.66434 20.1478 6.86815 20.2538 7.08573 20.2538H7.70366C7.32076 20.6799 7.08573 21.241 7.08573 21.858C7.08573 23.185 8.16545 24.2644 9.49211 24.2644C10.8188 24.2644 11.8985 23.185 11.8985 21.858C11.8985 21.241 11.6635 20.6799 11.2806 20.2538H16.5271C16.1441 20.6799 15.9091 21.241 15.9091 21.858C15.9091 23.185 16.9885 24.2644 18.3155 24.2644C19.6425 24.2644 20.7219 23.185 20.7219 21.858C20.7219 21.241 20.4869 20.6799 20.1041 20.2538H20.8556C21.2248 20.2538 21.524 19.9545 21.524 19.5854C21.524 19.2161 21.2248 18.9169 20.8556 18.9169H8.03682L8.75865 16.9116ZM8.42263 21.8583C8.42263 22.4482 8.90232 22.9278 9.49217 22.9278C10.082 22.9278 10.5616 22.4482 10.5616 21.8583C10.5616 21.2685 10.082 20.7888 9.49217 20.7888C8.90232 20.7888 8.42263 21.2685 8.42263 21.8583ZM17.246 21.8583C17.246 22.4482 17.7256 22.9278 18.3155 22.9278C18.9053 22.9278 19.385 22.4482 19.385 21.8583C19.385 21.2685 18.9053 20.7888 18.3155 20.7888C17.7256 20.7888 17.246 21.2685 17.246 21.8583Z"
                   fill="white"
                 />
@@ -61,10 +82,10 @@ const Header = () => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0_12004_22)">
+              <g clipPath="url(#clip0_12004_22)">
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M14.8997 2.16105C15.8067 1.76735 16.7847 1.56365 17.7734 1.5625C19.6894 1.56457 21.5263 2.3266 22.8811 3.6814C24.2359 5.03619 24.9979 6.87309 25 8.78906C25 15.9844 13.3945 23.0469 12.9141 23.3242C12.7926 23.3972 12.6535 23.4358 12.5117 23.4358L12.5 21.7344C14.5195 20.4414 23.4375 14.418 23.4375 8.78906C23.4377 7.58486 23.0541 6.41194 22.3423 5.44057C21.6306 4.46921 20.6278 3.74995 19.4796 3.38723C18.3313 3.0245 17.0973 3.03718 15.9567 3.42342C14.8161 3.80967 13.8283 4.54937 13.1367 5.53516C13.0646 5.63752 12.9689 5.72105 12.8578 5.77871C12.7466 5.83636 12.6233 5.86646 12.498 5.86646L12.5 3.85156C13.1761 3.13007 13.9927 2.55474 14.8997 2.16105Z"
                   fill="white"
                 />

@@ -1,0 +1,10 @@
+@import '../../../scss-setings/vars.scss';
+
+.catalog {
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+}

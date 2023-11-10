@@ -1,11 +1,32 @@
 import "./scss-setings/includes.scss";
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./Header/Header";
 import Home from "./page/Home/Home";
 import Basket from "./page/Basket/Basket";
 import Favourite from "./page/Favourite/Favourite";
 
+import { useDispatch } from 'react-redux'
+import { collectionHandler } from './redux/slices/collectionClise'
+
 function App() {
+
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    fetch('https://652cdf7ad0d1df5273efc824.mockapi.io/collection')
+    .then((res) => res.json())
+    .then((json) => {
+      dispatch(collectionHandler(json))
+    })
+    .catch((err) => {
+      console.warn(err);
+    })
+    // .finally(() => setLoading(false));
+  }, [])
+
+
   return (
     <>
       <Header />
