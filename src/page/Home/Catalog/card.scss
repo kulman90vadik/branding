@@ -70,9 +70,22 @@
     padding: 5px 10px;
     font-family: inherit;
     color: inherit;
-    background-color: $yellow;
     color: $black;
     text-transform: uppercase;
     font-weight: 700;
+    transition: background-color 0.3s ease;
+    &--yellow {
+      background-color: $yellow;
+    }
+    &--green {
+      background-color: green;
+    }
+  }
+
+  .red {
+    background-color: red;
+  }
+  .green {
+    background-color: green;
   }
 }

@@ -1,19 +1,24 @@
+import {useState} from 'react';
 import { useSelector } from "react-redux";
 import "./catalog.scss";
 import "./card.scss";
 
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../../../redux/slices/basketCollectionClise'
+import { onChengeBtn } from '../../../redux/slices/collectionClise'
 
 const Catalog = () => {
+
+  const [er, setEr] = useState(false)
+  
   const collection = useSelector((state) => state.collection.collection);
   const search = useSelector((state) => state.search.search);
   const dispatch = useDispatch();
 
- const aa = (obj) => {
-
-  dispatch(addToCart(obj))
- }
+const clickToCard = (obj) => {
+  dispatch(addToCart(obj));
+  dispatch(onChengeBtn(obj));
+}
 
 
   return (
@@ -61,12 +66,12 @@ const Catalog = () => {
                   <div className="card__block">
                     <ul className="card__list">
                       {item.sizes.map((size) => (
-                        <li className="card__item" key={size}>
+                        <li className={`card__item ${er ? 'red' : 'green'}`} key={size} onClick={() => setEr(!er)}>
                           {size}
                         </li>
                       ))}
                     </ul>
-                    <button className="card__btn btn-reset" type="button" onClick={() => aa(item)}>
+                    <button className={`card__btn btn-reset ${item.activeBtn ? 'card__btn--green' : 'card__btn--yellow'}`} type="button" onClick={() => clickToCard(item)}>
                       Add to Cart
                     </button>
                   </div>

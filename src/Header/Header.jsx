@@ -6,6 +6,8 @@ import { searchHandler, closeSearchHandler } from "../redux/slices/searchClise";
 
 const Header = () => {
   const search = useSelector((state) => state.search.search);
+  const count = useSelector((state) => state.basketCollection.count);
+  
   const dispatch = useDispatch();
 
   return (
@@ -38,16 +40,16 @@ const Header = () => {
           <Link to="/" className="header__logo">
             <img className="header__image" src="images/logo.png" alt="logo" />
           </Link>
-          <div className="header__sprache">
-            <button className="header__ru btn-reset" type="button">
+          <div className="header__langs">
+            <button className="header__lang header__lang--en btn-reset" type="button">
               EN
-            </button>
-            <button className="header__de btn-reset" type="button">
+            </button>|
+            <button className="header__lang header__lang--de btn-reset" type="button">
               DE
             </button>
-            |
           </div>
           <Link to="basket" className="header__corb btn-reset">
+            <div className="header__count">{count}</div>  
             <svg
               width="25"
               height="25"

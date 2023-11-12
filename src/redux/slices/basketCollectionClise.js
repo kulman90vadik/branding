@@ -4,7 +4,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 const initialState = {
-  basketCollection: []
+  basketCollection: [],
+  count: 0,
 }
 
 export const basketCollectionClise = createSlice({
@@ -12,24 +13,22 @@ export const basketCollectionClise = createSlice({
   initialState,
 
   reducers: {
-    addToCart: (state, objBasket) => {
-      // state.search = str.payload
-      console.log(objBasket.payload);
-     
+    addToCart: (state, objBasket) => {   
       if (state.basketCollection.find((item) => Number(item.id) === Number(objBasket.payload.id))) {
-        state.basketCollection = state.basketCollection.filter((elem) => Number(elem.id) !== Number(objBasket.payload.id))
+        state.basketCollection = state.basketCollection.filter((elem) => {
+          return (
+            Number(elem.id) !== Number(objBasket.payload.id)
+          )
+        })
+        state.count = state.count - 1;
       } else {
-        // setBasketCollections((prev) => [...prev, objBasket]);
-        console.log('ne');
         state.basketCollection = [...state.basketCollection, objBasket.payload];
-        console.log(state.basketCollection);
+        state.count = state.count + 1;
       }
-
     }
-
   },
 })
 
-export const { addToCart } = basketCollectionClise.actions
+export const { addToCart, count } = basketCollectionClise.actions
 
 export default basketCollectionClise.reducer

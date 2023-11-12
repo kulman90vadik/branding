@@ -12,11 +12,16 @@ export const collectionSlice = createSlice({
 
   reducers: {
     collectionHandler: (state, obj) => {
-      state.collection = obj.payload
+      state.collection = obj.payload;
+    },
+    onChengeBtn: (state, obj) => {
+      state.collection = state.collection.map((el) => (Number(el.id) !== Number(obj.payload.id)) ? el : {...el, activeBtn: !el.activeBtn})
+          // ПЕРЕПИСАТЬ!!!!!!!!!!!!!!!
     }
-  },
+
+  }
 })
 
-export const { collectionHandler } = collectionSlice.actions
+export const { collectionHandler, onChengeBtn } = collectionSlice.actions
 
 export default collectionSlice.reducer
