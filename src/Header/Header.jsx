@@ -7,6 +7,7 @@ import { searchHandler, closeSearchHandler } from "../redux/slices/searchClise";
 const Header = () => {
   const search = useSelector((state) => state.search.search);
   const count = useSelector((state) => state.basketCollection.count);
+  const countFavorutes = useSelector((state) => state.favoritesCollection.count);
   
   const dispatch = useDispatch();
 
@@ -77,6 +78,7 @@ const Header = () => {
             </svg>
           </Link>
           <Link to="favourite" className="header__favourite btn-reset">
+          <div className="header__count">{countFavorutes}</div> 
             <svg
               width="25"
               height="25"

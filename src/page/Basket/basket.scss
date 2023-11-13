@@ -1,0 +1,111 @@
+@import '../../scss-setings/vars.scss';
+
+.basket {
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__photo {
+    width: 164px;
+    height: 164px;
+    display: flex;
+  }
+
+  &__image {
+    object-fit: cover;
+  }
+
+
+  &__size {
+    background-color: $yellow;
+    color: $text;
+    text-transform: uppercase;
+    display: block;
+    padding: 5px 15px;
+    color: $black;
+    min-width: 30px;
+    width: 100%;
+    font-weight: 700;
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__price {
+    min-width: 60px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__close {
+    background-color: $text;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    svg {
+      margin: auto;
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .basket-select {
+    position: relative;
+    &__list {
+      width: 98px;
+      left: -1px;
+      overflow: hidden;
+      position: absolute;
+      transition: all 0.5s ease-in;
+      background-color: rgba($yellow, .1);
+    }
+
+    &__item {
+      padding: 5px;
+      cursor: pointer;
+    }
+    &__btn {
+      color: $black;
+      background-color: $yellow;
+      padding: 5px 5px 5px 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      transform: skew(-6deg);
+    }
+    &__svg {
+      width: 30px;
+      height: 19px;
+    }
+  }
+
+  
+  .basket-counter {
+    display: flex;
+    align-items: center;
+
+    &__btn {
+      color: $text;
+      padding: 5px 15px;
+      background-color: $yellow;
+      font-weight: 700;
+      margin: 0 5px;
+      color: $black;
+      font-size: 23px;
+    }
+
+    &__total {
+      min-width: 60px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

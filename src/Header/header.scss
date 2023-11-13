@@ -71,6 +71,10 @@
     margin-right: 29px;
   }
 
+  &__favourite {
+    position: relative;
+  }
+
   &__count {
     position: absolute;
     right: -12px;
@@ -88,4 +92,5 @@
     font-weight: 700;
   }
 
+  
 }
