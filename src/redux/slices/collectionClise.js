@@ -20,8 +20,10 @@ export const collectionSlice = createSlice({
     },
     onChengeLike: (state, obj) => {
       state.collection = state.collection.map((el) => (Number(el.id) !== Number(obj.payload.id)) ? el : {...el, activeLike: !el.activeLike})
-          // ПЕРЕПИСАТЬ!!!!!!!!!!!!!!!
-    }
+    },
+    // delChengeBtn: (state, obj) => {
+    //   state.collection = state.collection.map((el) => (Number(el.id) !== Number(obj.payload.id)) ? el : {...el, activeBtn: !el.activeBtn})
+    // }
   }
 })
 

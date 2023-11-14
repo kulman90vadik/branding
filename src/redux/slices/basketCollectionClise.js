@@ -25,10 +25,19 @@ export const basketCollectionClise = createSlice({
         state.basketCollection = [...state.basketCollection, objBasket.payload];
         state.count = state.count + 1;
       }
+    },
+    // onChengeBtnBasket: (state, obj) => {
+    //   state.basketCollection = state.basketCollection.map((el) => (Number(el.id) !== Number(obj.payload.id)) ? el : {...el, activeBtn: !el.activeBtn})
+    // }
+    deleteCartBasket: (state, obj) => {
+      state.basketCollection = state.basketCollection.filter((el) => (Number(el.id) !== Number(obj.payload.id)) )
+      state.count = state.count - 1;
     }
   },
 })
 
-export const { addToCart, count } = basketCollectionClise.actions
+// 
+
+export const { addToCart, count, deleteCartBasket } = basketCollectionClise.actions
 
 export default basketCollectionClise.reducer

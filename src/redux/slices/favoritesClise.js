@@ -25,10 +25,16 @@ export const favoritesClise = createSlice({
         state.favoritesCollection = [...state.favoritesCollection, objBasket.payload];
         state.count = state.count + 1;
       }
+    },
+    onChengeLikeBasket: (state, obj) => {
+      state.favoritesCollection = state.favoritesCollection.map((el) => (Number(el.id) !== Number(obj.payload.id)) ? el : {...el, activeLike: !el.activeLike})
+    },
+    onChengeBtnBasket: (state, obj) => {
+      state.favoritesCollection = state.favoritesCollection.map((el) => (Number(el.id) !== Number(obj.payload.id)) ? el : {...el, activeBtn: !el.activeBtn})
     }
   },
 })
 
-export const { addToFavorites, count } = favoritesClise.actions
+export const { addToFavorites, count, onChengeLikeBasket, onChengeBtnBasket } = favoritesClise.actions
 
 export default favoritesClise.reducer

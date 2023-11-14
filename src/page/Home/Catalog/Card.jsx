@@ -2,9 +2,8 @@
 import "./card.scss";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/slices/basketCollectionClise";
-import { addToFavorites } from "../../../redux/slices/favoritesClise";
+import { addToFavorites, onChengeLikeBasket, onChengeBtnBasket } from "../../../redux/slices/favoritesClise";
 import { onChengeBtn, onChengeLike } from "../../../redux/slices/collectionClise";
-// import { onChengeLike } from "../../../redux/slices/favoritesClise";
 import Sizes from "./Sizes";
 
 const Card = ({ item }) => {
@@ -14,10 +13,13 @@ const Card = ({ item }) => {
   const clickToCard = (obj) => {
     dispatch(addToCart(obj));
     dispatch(onChengeBtn(obj));
+    dispatch(onChengeBtnBasket(obj));
   };
   const clickToFavorites = (obj) => {
     dispatch(addToFavorites(obj));
     dispatch(onChengeLike(obj));
+    dispatch(onChengeLikeBasket(obj));
+    
   };
 
   return (
@@ -70,3 +72,4 @@ const Card = ({ item }) => {
 };
 
 export default Card;
+

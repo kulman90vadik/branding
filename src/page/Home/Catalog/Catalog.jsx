@@ -10,6 +10,7 @@ const Catalog = () => {
   
   return (
     <section className="catalog">
+      <div className="catalog__title">Die Website befindet sich in Bearbeitung</div>
       <div className="catalog__container">
         <div className="catalog__top">top</div>
 

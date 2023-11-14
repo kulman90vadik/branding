@@ -1,15 +1,21 @@
 import "./header.scss";
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { searchHandler, closeSearchHandler } from "../redux/slices/searchClise";
 
 const Header = () => {
+  const inputRef = useRef();
   const search = useSelector((state) => state.search.search);
   const count = useSelector((state) => state.basketCollection.count);
   const countFavorutes = useSelector((state) => state.favoritesCollection.count);
   
   const dispatch = useDispatch();
+
+  const close = () => {
+    dispatch(closeSearchHandler())
+    inputRef.current.focus();
+  }
 
   return (
     <header className="header">
@@ -25,12 +31,13 @@ const Header = () => {
               <button
                 className="header__input-close btn-reset"
                 type="button"
-                onClick={() => dispatch(closeSearchHandler())}
+                onClick={close}
               >
                 &times;
               </button>
             )}
             <input
+              ref={inputRef}
               className="header__input-text"
               type="text"
               placeholder="Search"

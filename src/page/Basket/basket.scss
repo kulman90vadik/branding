@@ -59,7 +59,7 @@
   .basket-select {
     position: relative;
     &__list {
-      width: 98px;
+      width: 110px;
       left: -1px;
       overflow: hidden;
       position: absolute;
@@ -70,8 +70,14 @@
     &__item {
       padding: 5px;
       cursor: pointer;
+      transition: color 0.3s ease-in, background-color 0.3s ease-in;
+      &:hover {
+        background-color: $yellow;
+        color: $black;
+      }
     }
     &__btn {
+      width: 110px;
       color: $black;
       background-color: $yellow;
       padding: 5px 5px 5px 15px;
@@ -79,10 +85,15 @@
       display: flex;
       align-items: center;
       transform: skew(-6deg);
+      justify-content: space-between;
     }
     &__svg {
       width: 30px;
       height: 19px;
+      transition: transform 0.3s ease-in;
+      &--active {
+        transform: rotate(180deg);
+      }
     }
   }
 
