@@ -11,8 +11,8 @@ export const searchClise = createSlice({
   initialState,
 
   reducers: {
-    searchHandler: (state, str) => {
-      state.search = str.payload
+    updateSearchValue: (state, value) => {
+      state.search = value.payload
     },
     closeSearchHandler: (state) => {
       state.search = ''
@@ -20,6 +20,7 @@ export const searchClise = createSlice({
   },
 })
 
-export const { searchHandler, closeSearchHandler } = searchClise.actions
+export const { closeSearchHandler, updateSearchValue } = searchClise.actions
 
 export default searchClise.reducer
+

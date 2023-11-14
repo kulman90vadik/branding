@@ -1,10 +1,12 @@
 import "./header.scss";
-import React, { useRef } from "react";
+import React, { useRef, useCallback, useState } from "react";
+import debounce from "lodash.debounce";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { searchHandler, closeSearchHandler } from "../redux/slices/searchClise";
+import { closeSearchHandler, updateSearchValue } from "../redux/slices/searchClise";
 
 const Header = () => {
+  const [valueSearch, setValueSearch] = useState('');
   const inputRef = useRef();
   const search = useSelector((state) => state.search.search);
   const count = useSelector((state) => state.basketCollection.count);
@@ -13,8 +15,21 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const close = () => {
-    dispatch(closeSearchHandler())
+    dispatch(closeSearchHandler());
+    setValueSearch('');
     inputRef.current.focus();
+  }
+
+  const searchHandler = useCallback(
+    debounce((value) => {
+      dispatch(updateSearchValue(value))
+    }, 600),
+    [],
+  )
+
+  const clickSearchHandler = (e) => {
+    setValueSearch(e.target.value);
+    searchHandler(e.target.value);
   }
 
   return (
@@ -41,8 +56,8 @@ const Header = () => {
               className="header__input-text"
               type="text"
               placeholder="Search"
-              value={search}
-              onChange={(e) => dispatch(searchHandler(e.target.value))}
+              value={valueSearch}
+              onChange={(e) => clickSearchHandler(e)}
             />
           </div>
           <Link to="/" className="header__logo">

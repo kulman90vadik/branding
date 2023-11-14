@@ -1,11 +1,11 @@
 import Catalog from "./Catalog/Catalog";
 
 
-const Home = () => {
+const Home = ({loading}) => {
 
   return ( 
     <>
-      <Catalog  />
+      <Catalog  loading={loading}/>
     </>
   );
 
