@@ -15,10 +15,12 @@ function App() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const search = useSelector((state) => state.search.search);
+  const countCategory = useSelector((state) => state.collection.countCategory);
+
 
   useEffect(() => {
     setLoading(true);
-    fetch('https://652cdf7ad0d1df5273efc824.mockapi.io/collection')
+    fetch(`https://652cdf7ad0d1df5273efc824.mockapi.io/collection?${countCategory ? `category=${countCategory}` : ""}`)
     .then((res) => res.json())
     .then((json) => {
       dispatch(collectionHandler(json))
@@ -27,7 +29,8 @@ function App() {
       console.warn(err);
     })
     .finally(() => setLoading(false));
-  }, [search])
+  }, [search, countCategory])
+
 
 
   return (

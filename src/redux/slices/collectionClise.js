@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   collection: [],
+  countCategory: 0
 }
 
 export const collectionSlice = createSlice({
@@ -24,9 +25,12 @@ export const collectionSlice = createSlice({
     // delChengeBtn: (state, obj) => {
     //   state.collection = state.collection.map((el) => (Number(el.id) !== Number(obj.payload.id)) ? el : {...el, activeBtn: !el.activeBtn})
     // }
+    categoryChange: (state, index) => {
+      state.countCategory = index.payload;
+    }
   }
 })
 
-export const { collectionHandler, onChengeBtn, onChengeLike } = collectionSlice.actions
+export const { collectionHandler, onChengeBtn, onChengeLike, categoryChange } = collectionSlice.actions
 
 export default collectionSlice.reducer

@@ -14,4 +14,36 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
   }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__top {
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    transform: skew(-6deg);
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  &__btn {
+    background-color: transparent;
+    padding: 5px 15px;
+    border: 1px solid $yellow;
+    font-weight: 600;
+    color: $text;
+    transition: all 0.3s ease-in;
+    &--active {
+      color: $black;
+      background-color: $yellow;
+    }
+  }
 }
