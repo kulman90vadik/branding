@@ -1,20 +1,28 @@
-import { useState } from "react";
+// import { useState } from "react";
 import "./card.scss";
+import { onChengeSizes } from "../../../redux/slices/collectionClise";
+import { useDispatch } from "react-redux";
 
-const Sizes = ({ sizes }) => {
-  const [count, setCount] = useState(1);
+const Sizes = ({ sizes, id }) => {
+  const dispatch = useDispatch();
+
+  const changeSize = (index) => {
+
+  dispatch(onChengeSizes(index, id))
+      console.log(id);
+  }
 
   return (
     <>
       {sizes.map((size, index) => (
         <li
           className={`card__item ${
-            count === index ? "card__item--active" : ""
+            size.activeSize ? "card__item--active" : ""
           }`}
-          key={size}
-          onClick={() => setCount(index)}
+          key={size.size}
+          onClick={() => changeSize(index)}
         >
-          {size}
+          {size.size}
         </li>
       ))}
     </>

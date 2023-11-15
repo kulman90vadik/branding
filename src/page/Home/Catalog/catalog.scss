@@ -19,10 +19,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 50px;
   }
 
   &__top {
-    margin-bottom: 50px;
     display: flex;
     align-items: center;
   }
@@ -46,4 +46,51 @@
       background-color: $yellow;
     }
   }
+
+  &__price {
+    position: relative;
+  }
+  &__price-btn {
+    color: $text;
+    display: flex;
+    align-items: center;
+    width: 155px;
+    justify-content: space-between;
+    border: 1px solid $yellow;
+    background-color: transparent;
+    padding: 5px 15px;
+    font-weight: 600;
+    color: #F0F0F0;
+    transform: skew(-6deg);
+  }
+  &__price-svg {
+    fill: $text;
+    width: 17px;
+    height: 15px;
+    transition: transform 0.3s ease-in;
+    &--active {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__price-list {
+    position: absolute;
+    z-index: 100;
+    width: 155px;
+    left: -2px;
+    overflow: hidden;
+    transition: all 0.5s ease-in;
+    background-color: rgba($yellow, .8);
+  }
+
+  &__price-item {
+    padding: 5px;
+    cursor: pointer;
+    transition: color 0.3s ease-in, background-color 0.3s ease-in;
+    &:hover {
+      background-color: $yellow;
+      color: $black;
+    }
+  }
+
 }

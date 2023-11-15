@@ -4,7 +4,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   collection: [],
-  countCategory: 0
+  countCategory: 0,
+  priceOrderId: '',
 }
 
 export const collectionSlice = createSlice({
@@ -17,20 +18,23 @@ export const collectionSlice = createSlice({
     },
     onChengeBtn: (state, obj) => {
       state.collection = state.collection.map((el) => (Number(el.id) !== Number(obj.payload.id)) ? el : {...el, activeBtn: !el.activeBtn})
-          // ПЕРЕПИСАТЬ!!!!!!!!!!!!!!!
     },
     onChengeLike: (state, obj) => {
       state.collection = state.collection.map((el) => (Number(el.id) !== Number(obj.payload.id)) ? el : {...el, activeLike: !el.activeLike})
     },
-    // delChengeBtn: (state, obj) => {
-    //   state.collection = state.collection.map((el) => (Number(el.id) !== Number(obj.payload.id)) ? el : {...el, activeBtn: !el.activeBtn})
-    // }
     categoryChange: (state, index) => {
       state.countCategory = index.payload;
+    },
+    chengePriceOrder: (state, id) => {
+      state.priceOrderId = id.payload
+    },
+    onChengeSizes: (state, index, id) => {
+      console.log(index.payload);
+      // console.log(id);
     }
   }
 })
 
-export const { collectionHandler, onChengeBtn, onChengeLike, categoryChange } = collectionSlice.actions
+export const { collectionHandler, onChengeBtn, onChengeLike, categoryChange, chengePriceOrder, priceOrderId, onChengeSizes } = collectionSlice.actions
 
 export default collectionSlice.reducer

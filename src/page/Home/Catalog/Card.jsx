@@ -56,7 +56,7 @@ const Card = ({ item }) => {
       <span className="card__price">{item.price} $</span>
       <div className="card__block">
         <ul className="card__list">
-          <Sizes sizes={item.sizes} />
+          <Sizes sizes={item.sizes} id={item.id} />
         </ul>
         <button
           className={`card__btn btn-reset ${item.activeBtn ? "card__btn--green" : "card__btn--yellow"

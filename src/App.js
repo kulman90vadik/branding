@@ -16,11 +16,17 @@ function App() {
   const dispatch = useDispatch();
   const search = useSelector((state) => state.search.search);
   const countCategory = useSelector((state) => state.collection.countCategory);
-
+  const priceOrderId = useSelector((state) => state.collection.priceOrderId);
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://652cdf7ad0d1df5273efc824.mockapi.io/collection?${countCategory ? `category=${countCategory}` : ""}`)
+
+    let orderId = priceOrderId ? `&sortBy=price&order=${priceOrderId}` : '';
+    let categoryId = countCategory ? `category=${countCategory}` : "";
+
+           console.log(`https://652cdf7ad0d1df5273efc824.mockapi.io/collection?${categoryId}${orderId}`);
+           
+    fetch(`https://652cdf7ad0d1df5273efc824.mockapi.io/collection?${categoryId}${orderId}`)
     .then((res) => res.json())
     .then((json) => {
       dispatch(collectionHandler(json))
@@ -29,7 +35,7 @@ function App() {
       console.warn(err);
     })
     .finally(() => setLoading(false));
-  }, [search, countCategory])
+  }, [search, countCategory, priceOrderId])
 
 
 
