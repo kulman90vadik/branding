@@ -30,8 +30,8 @@ const Basket = () => {
                 <span className="basket__title">{elem.title}</span>
                 <div className="basket__sizes">
                   {elem.sizes.map((item) => (
-                    <button className="basket__size btn-reset" type="button">
-                      {item}
+                    <button className="basket__size btn-reset" type="button" key={item.size}>
+                      {item.size}
                     </button>
                   ))}
                 </div>
