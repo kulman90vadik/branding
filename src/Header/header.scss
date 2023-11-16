@@ -1,9 +1,13 @@
-
-@import '../scss-setings/vars.scss';
+@import "../scss-setings/vars.scss";
 
 .header {
-
   padding: 15px 0;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: $black; 
   &__top {
     display: flex;
     justify-content: space-between;
@@ -19,7 +23,7 @@
     margin-left: auto;
     margin-right: 27px;
   }
-  
+
   &__lang {
     text-transform: uppercase;
     padding: 2px 10px;
@@ -73,6 +77,7 @@
 
   &__favourite {
     position: relative;
+    margin-right: 20px;
   }
 
   &__count {
@@ -92,5 +97,44 @@
     font-weight: 700;
   }
 
-  
+  &__toggle {
+    outline: none;
+    display: flex;
+    width: 60px;
+    height: 30px;
+    background-color: #212121;
+    border-radius: 50px;
+    position: relative;
+    &::after {
+      content: "";
+      z-index: 5;
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: #d6d6d6;
+      border-radius: 50%;
+      top: 0;
+      transition: transform 0.3s ease-in;
+      transform: translateX(-2%);
+    }
+    &--active {
+      &::after {
+        transition: transform 0.3s ease-in;
+        transform: translateX(100%);
+      }
+    }
+  }
+
+  &__toggle-left {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      position: relative;
+      z-index: 10;
+    }
+  }
 }

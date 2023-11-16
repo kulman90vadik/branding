@@ -6,6 +6,9 @@ import Loader from "../../../Loader/Loader";
 
 import { categoryChange, chengePriceOrder } from "../../../redux/slices/collectionClise";
 import { useState } from "react";
+import Pagination from "../../../Pagination/Pagination";
+
+
 let category = ["All", "Sweater", "T-shirt", "Hemd"];
 let sortPrice = [
   {'title': 'Price', 'id': ''},
@@ -31,9 +34,6 @@ const Catalog = ({ loading }) => {
 
   return (
     <section className="catalog">
-      <div className="catalog__title">
-        Die Website befindet sich in Bearbeitung
-      </div>
       <div className="catalog__container">
         <div className="catalog__inner">
           <ul className="catalog__top">
@@ -78,6 +78,9 @@ const Catalog = ({ loading }) => {
                   return <Card item={item} key={item.id} />;
                 })}
         </ul>
+
+
+        <Pagination />
       </div>
     </section>
   );

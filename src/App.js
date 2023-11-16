@@ -9,7 +9,7 @@ import Home from "./page/Home/Home";
 import Basket from "./page/Basket/Basket";
 import Favorites from "./page/Favorites/Favorites";
 
-import { collectionHandler } from './redux/slices/collectionClise'
+import { collectionHandler } from './redux/slices/collectionClise';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -17,16 +17,18 @@ function App() {
   const search = useSelector((state) => state.search.search);
   const countCategory = useSelector((state) => state.collection.countCategory);
   const priceOrderId = useSelector((state) => state.collection.priceOrderId);
+  const countPage = useSelector((state) => state.collection.countPage);
 
   useEffect(() => {
     setLoading(true);
 
-    let orderId = priceOrderId ? `&sortBy=price&order=${priceOrderId}` : '';
     let categoryId = countCategory ? `category=${countCategory}` : "";
+    let orderId = priceOrderId ? `&sortBy=price&order=${priceOrderId}` : '';
+    let page = `&page=${countPage}&limit=5`
 
-           console.log(`https://652cdf7ad0d1df5273efc824.mockapi.io/collection?${categoryId}${orderId}`);
-           
-    fetch(`https://652cdf7ad0d1df5273efc824.mockapi.io/collection?${categoryId}${orderId}`)
+           console.log(`https://652cdf7ad0d1df5273efc824.mockapi.io/collection?${categoryId}${page}${orderId}`);
+
+    fetch(`https://652cdf7ad0d1df5273efc824.mockapi.io/collection?${categoryId}${page}${orderId}`)
     .then((res) => res.json())
     .then((json) => {
       dispatch(collectionHandler(json))
@@ -35,7 +37,7 @@ function App() {
       console.warn(err);
     })
     .finally(() => setLoading(false));
-  }, [search, countCategory, priceOrderId])
+  }, [search, countCategory, priceOrderId, countPage])
 
 
 

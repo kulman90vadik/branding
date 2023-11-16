@@ -33,6 +33,32 @@ body {
     // &--hidden {
     //     overflow: hidden;
     // }
+    transition: background-color 0.3s ease-in;
+}
+
+body.light {
+    background-color: #d3d3d3;
+    transition: background-color 0.3s ease-in;
+    .header {
+        background-color: rgba($black, 0.6);
+    }
+    .hero__title {
+        color: #8d8d8d;
+    }
+    .card,
+    .catalog__btn,
+    .catalog__price-btn {
+        background-color: #8d8d8d;
+    }
+    .catalog__btn {
+        border-color: #8d8d8d;
+        &--active {
+            background-color: $yellow;
+        }
+    }
+    .catalog__price-btn {
+        border-color: #8d8d8d;
+    }
 }
 
 [class*="__container"] {

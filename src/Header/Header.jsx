@@ -1,5 +1,5 @@
 import "./header.scss";
-import React, { useRef, useCallback, useState } from "react";
+import React, { useRef, useCallback, useState, useEffect } from "react";
 import debounce from "lodash.debounce";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ const Header = () => {
   const search = useSelector((state) => state.search.search);
   const count = useSelector((state) => state.basketCollection.count);
   const countFavorutes = useSelector((state) => state.favoritesCollection.count);
+  const[darkMode, setDarkMode] = useState(false);
   
   const dispatch = useDispatch();
 
@@ -31,6 +32,15 @@ const Header = () => {
     setValueSearch(e.target.value);
     searchHandler(e.target.value);
   }
+
+  useEffect(() => {
+    if(darkMode) {
+      document.body.classList.add('light')
+    } else {
+      document.body.classList.remove('light')
+    }
+  }, [darkMode]);
+
 
   return (
     <header className="header">
@@ -127,6 +137,16 @@ const Header = () => {
               </defs>
             </svg>
           </Link>
+
+          <button className={`header__toggle btn-reset ${darkMode ? 'header__toggle--active' : ''}`} onClick={() => setDarkMode(!darkMode)}>
+            <div className="header__toggle-left">
+              <img src="images/moon.svg" alt="moon" />
+            </div>
+            <div className="header__toggle-left">
+              <img src="images/sun.svg" alt="sun" />
+            </div>
+          </button>
+
         </div>
         <nav className="header__menu">
           <ul className="header__list">
