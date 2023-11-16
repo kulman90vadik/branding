@@ -1,5 +1,59 @@
+@import "../../scss-setings/vars.scss";
 
 .reviews {
   padding: 150px 0;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    background-color: #171c25;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 10px;
+  }
+
+  &__title {
+    font-weight: 800;
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 29px;
+  }
+
+  &__label {
+    color: $text;
+    display: block;
+    margin-bottom: 5px;
+
+  }
+
+  &__input {
+    margin-bottom: 15px;
+    border: 2px solid $yellow;
+    height: 40px;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 0 10px;
+
+  }
+
+  &__textarea {
+    padding: 10px;
+    height: 100px;
+    resize: none;
+  }
+
+  &__label--file {
+    margin-bottom: 20px;
+  }
+
+  &__submit {
+    background-color: $yellow;
+    border-radius: 50px;
+    height: 50px;
+    font-weight: 600;
+    font-size: 23px;
+  }
 
 }
