@@ -1,0 +1,30 @@
+@import "../../scss-setings/vars.scss";
+
+
+.navigation {
+  // background-color: #fff;
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+  &__item {
+    transform: skew(-6deg);
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  &__link {
+    padding: 5px 12px;
+    color: $text;
+    font-weight: 600;
+    border: 1px solid $text;
+    transition: all 0.3s ease-in-out;
+    &--active {
+      background-color: $yellow;
+      transition: all 0.3s ease-in-out;
+      border-color: $yellow;
+      color: $black;
+    }
+  }
+}

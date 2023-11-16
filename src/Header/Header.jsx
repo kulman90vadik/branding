@@ -4,6 +4,7 @@ import debounce from "lodash.debounce";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { closeSearchHandler, updateSearchValue } from "../redux/slices/searchClise";
+import Navigation from "./Navigation/Navigation";
 
 const Header = () => {
   const [valueSearch, setValueSearch] = useState('');
@@ -109,7 +110,7 @@ const Header = () => {
               </defs>
             </svg>
           </Link>
-          <Link to="favourite" className="header__favourite btn-reset">
+          <Link to="favorite" className="header__favourite btn-reset">
           <div className="header__count">{countFavorutes}</div> 
             <svg
               width="25"
@@ -148,13 +149,9 @@ const Header = () => {
           </button>
 
         </div>
-        <nav className="header__menu">
-          <ul className="header__list">
-            <li className="header__item">
-              <a href="#" className="header__link"></a>
-            </li>
-          </ul>
-        </nav>
+        
+        <Navigation />      
+
       </div>
     </header>
   );
