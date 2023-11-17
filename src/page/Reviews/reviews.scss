@@ -11,6 +11,7 @@
     margin: 0 auto;
     padding: 30px;
     border-radius: 10px;
+    margin-bottom: 20px;
   }
 
   &__title {
@@ -25,7 +26,7 @@
     color: $text;
     display: block;
     margin-bottom: 5px;
-
+    font-size: 11px;
   }
 
   &__input {
@@ -35,7 +36,12 @@
     background-color: transparent;
     border-radius: 5px;
     padding: 0 10px;
-
+    color: inherit;
+    outline: transparent;
+    transition: border-color 0.3s ease-in;
+    &:focus {
+      border-color: green;
+    }
   }
 
   &__textarea {
@@ -45,7 +51,19 @@
   }
 
   &__label--file {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    height: 74px;
+    border: 2px dashed teal;
+    transition: border-color 0.3s ease-in;
+    font-size: 16px;
+    &:hover {
+      border-color: $yellow;
+    }
   }
 
   &__submit {
@@ -56,4 +74,70 @@
     font-size: 23px;
   }
 
+  &__list {
+    padding: 40px;
+    background-color: #171c25;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: flex;
+    background-color: #6e6e6e;
+    padding: 30px;
+    border-radius: 20px;
+    width: 85%;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+    &:nth-child(even) {
+      margin-left: auto;
+    }
+  }
+  
+  &__photo {
+    min-width: 90px;
+    max-width: 90px;
+    min-height: 90px;
+    max-height: 90px;
+    margin-right: 20px;
+    border-radius: 50%;
+    background-color: yellow;
+  }
+  
+  
+  &__image {
+    display: block;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+
+  &__name {
+    display: block;
+    margin-bottom: 13px;
+    font-size: 19px;
+    font-weight: 700;
+    font-size: 26px;
+    color: yellow;
+  }
+
+  &__text {
+    margin-bottom: 20px;
+  }
+
+  &__time {
+    opacity: 0.5;
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  
+  &__preview {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+  }
 }

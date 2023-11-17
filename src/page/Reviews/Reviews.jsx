@@ -1,32 +1,60 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./reviews.scss";
 
 const Reviews = () => {
-  const [reviews, setReviews] = useState([]);
-
+  const fileInputRef = useRef();
+  const [image, setImage] = useState();
+  const [preview, setPreview] = useState("");
   const [inputName, setInputName] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [inputText, setInputText] = useState("");
   const [inputPhoto, setInputPhoto] = useState("");
+  const [reviews, setReviews] = useState([
+    {
+      name: "Franz",
+      email: "franz@life.de",
+      text: "Contrary to popular belief, Lorem Ipsum is not simply random text. Tof the word in classical literature, discovered the undoubtable source.",
+      time: new Date(),
+      photo: "images/person.png",
+    },
+  ]);
+
+  useEffect(() => {
+    if (image) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+        setInputPhoto(reader.result);
+      };
+      reader.readAsDataURL(image);
+    } else {
+      setPreview(null);
+      setInputPhoto(null);
+    }
+  }, [image]);
 
   const submitData = (e) => {
     e.preventDefault();
-    setReviews((prev) => {
-      return [
-        {
-          name: inputName,
-          email: inputEmail,
-          text: inputText,
-        },
-        ...prev,
-      ];
-    });
-
-    console.log(inputPhoto);
-
-    setInputName("");
-    setInputEmail("");
-    setInputText("");
+    if(inputName != '' && inputEmail != '' && inputText != '' && inputPhoto != '') {
+        setReviews((prev) => {
+          return [
+            {
+              name: inputName,
+              email: inputEmail,
+              text: inputText,
+              time: new Date(),
+              photo: inputPhoto,
+            },
+            ...prev,
+          ];
+        });
+    
+        setInputName("");
+        setInputEmail("");
+        setInputText("");
+        setInputPhoto("");
+        setPreview("");
+    }
   };
 
   return (
@@ -43,7 +71,7 @@ const Reviews = () => {
             type="text"
             name="name"
             className="reviews__input"
-            placeholder="name"
+            placeholder="Name"
             onChange={(e) => setInputName(e.target.value)}
             value={inputName}
           />
@@ -52,7 +80,7 @@ const Reviews = () => {
             type="email"
             name="email"
             className="reviews__input"
-            placeholder="email"
+            placeholder="Email"
             onChange={(e) => setInputEmail(e.target.value)}
             value={inputEmail}
           />
@@ -60,21 +88,44 @@ const Reviews = () => {
           <textarea
             name="text"
             className="reviews__textarea reviews__input"
-            placeholder="text"
+            placeholder="Message"
             onChange={(e) => setInputText(e.target.value)}
             value={inputText}
           ></textarea>
-          <label htmlFor="file" className="reviews__label reviews__label--file">
-            Your photo
+
+          <div className="reviews__block">
+            <label
+              htmlFor="file"
+              className="reviews__label reviews__label--file"
+              onClick={(event) => {
+                event.preventDefault();
+                fileInputRef.current.click();
+              }}
+            >
+              Your photo
+              {preview ?
+                <img src={preview} alt="photo" className="reviews__preview" />
+                : null
+              }
+            </label>
             <input
               id="file"
               type="file"
               className="reviews__file"
-              onChange={(e) => setInputPhoto(e.target.value)}
-              value={inputPhoto}
+              accept="image/*"
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              onChange={(event) => {
+                const file = event.target.files[0];
+                if (file && file.type.substr(0, 5) === "image") {
+                  setImage(file);
+                } else {
+                  setImage(null);
+                }
+              }}
             />
-            <span></span>
-          </label>
+
+          </div>
           <input
             className="reviews__submit btn-reset"
             type="submit"
@@ -82,11 +133,22 @@ const Reviews = () => {
           />
         </form>
 
-        <div className="reviews__list">
+        <ul className="reviews__list">
           {reviews.map((el) => (
-            <li>{el.name}</li>
+            <li className="reviews__item" key={el.text}>
+              <div className="reviews__photo">
+                <img src={el.photo} alt="photo" className="reviews__image" />
+              </div>
+              <div className="reviews__info">
+                <span className="reviews__name">{el.name}</span>
+                <div className="reviews__text">{el.text}</div>
+                <time className="reviews__time">
+                  {el.time.toLocaleString()}
+                </time>
+              </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   );
