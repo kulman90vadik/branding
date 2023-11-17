@@ -9,6 +9,7 @@ const Reviews = () => {
   const [inputEmail, setInputEmail] = useState("");
   const [inputText, setInputText] = useState("");
   const [inputPhoto, setInputPhoto] = useState("");
+  const [rating, setRating] = useState(2);
   const [reviews, setReviews] = useState([
     {
       name: "Franz",
@@ -16,6 +17,7 @@ const Reviews = () => {
       text: "Contrary to popular belief, Lorem Ipsum is not simply random text. Tof the word in classical literature, discovered the undoubtable source.",
       time: new Date(),
       photo: "images/person.png",
+      // star: rating
     },
   ]);
 
@@ -44,6 +46,7 @@ const Reviews = () => {
               text: inputText,
               time: new Date(),
               photo: inputPhoto,
+              // star: rating
             },
             ...prev,
           ];
@@ -126,6 +129,18 @@ const Reviews = () => {
             />
 
           </div>
+              <div className="rating">
+                {[...Array(5)].map((start, index) => {
+                  return (
+                    <>
+                      <input type="radio" name="star" id={index} onClick={() => setRating(index)}/>
+                      <label htmlFor={index} key={index}>&#9733;</label>
+                    </>
+                  )
+                })}
+              </div>
+
+
           <input
             className="reviews__submit btn-reset"
             type="submit"
@@ -142,6 +157,18 @@ const Reviews = () => {
               <div className="reviews__info">
                 <span className="reviews__name">{el.name}</span>
                 <div className="reviews__text">{el.text}</div>
+
+                <div className="rating-info">
+                  {[...Array(5)].map((start, index) => {
+                    return (
+                      <>
+                        <input type="radio" name="star-info" id={index} />
+                        <label htmlFor={index} className={`${index == rating ? 'label' : ''}`}>&#9733;</label>
+                      </>
+                    )
+                  })}
+                </div>
+
                 <time className="reviews__time">
                   {el.time.toLocaleString()}
                 </time>

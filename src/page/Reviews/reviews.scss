@@ -42,6 +42,9 @@
     &:focus {
       border-color: green;
     }
+    &:active {
+      background-color: transparent;
+    }
   }
 
   &__textarea {
@@ -140,4 +143,55 @@
     height: 50px;
     margin-left: 20px;
   }
+
+
+  .rating {
+    // border: 1px solid #bbb;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 170px;
+    margin-bottom: 20px;
+  }
+  
+  .rating input[type="radio"] {
+    display: none;
+    opacity: 0;
+  }
+  
+  .rating label {
+    color: rgb(155, 155, 155);
+    cursor: pointer;
+    font-size: 2.5rem;
+  }
+  
+  .rating input:checked ~ label {
+    color: yellow;
+  }
+
+
+  // 
+
+  .rating-info {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 170px;
+    margin-bottom: 20px;
+  }
+  
+  .rating-info input[type="radio"] {
+    display: none;
+    opacity: 0;
+  }
+  
+  .rating-info label {
+    color: rgb(155, 155, 155);
+    cursor: pointer;
+    font-size: 2rem;
+  }
+  
+  .rating-info input ~ label.label {
+    color: yellow;
+  }
+  
+
 }
