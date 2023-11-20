@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Fragment } from "react";
 import "./reviews.scss";
 
 const Reviews = () => {
@@ -9,7 +9,9 @@ const Reviews = () => {
   const [inputEmail, setInputEmail] = useState("");
   const [inputText, setInputText] = useState("");
   const [inputPhoto, setInputPhoto] = useState("");
-  const [rating, setRating] = useState(2);
+
+  const [rating, setRating] = useState(0);
+
   const [reviews, setReviews] = useState([
     {
       name: "Franz",
@@ -17,7 +19,7 @@ const Reviews = () => {
       text: "Contrary to popular belief, Lorem Ipsum is not simply random text. Tof the word in classical literature, discovered the undoubtable source.",
       time: new Date(),
       photo: "images/person.png",
-      // star: rating
+      star: rating
     },
   ]);
 
@@ -37,7 +39,7 @@ const Reviews = () => {
 
   const submitData = (e) => {
     e.preventDefault();
-    if(inputName != '' && inputEmail != '' && inputText != '' && inputPhoto != '') {
+    if(inputName !== '' && inputEmail !== '' && inputText !== '' && inputPhoto !== '') {
         setReviews((prev) => {
           return [
             {
@@ -46,7 +48,7 @@ const Reviews = () => {
               text: inputText,
               time: new Date(),
               photo: inputPhoto,
-              // star: rating
+              star: rating
             },
             ...prev,
           ];
@@ -57,6 +59,7 @@ const Reviews = () => {
         setInputText("");
         setInputPhoto("");
         setPreview("");
+        setRating("");
     }
   };
 
@@ -107,7 +110,7 @@ const Reviews = () => {
             >
               Your photo
               {preview ?
-                <img src={preview} alt="photo" className="reviews__preview" />
+                <img src={preview} alt="photography of clothes" className="reviews__preview" />
                 : null
               }
             </label>
@@ -132,10 +135,10 @@ const Reviews = () => {
               <div className="rating">
                 {[...Array(5)].map((start, index) => {
                   return (
-                    <>
+                    <Fragment key={index}>
                       <input type="radio" name="star" id={index} onClick={() => setRating(index)}/>
                       <label htmlFor={index} key={index}>&#9733;</label>
-                    </>
+                    </Fragment>
                   )
                 })}
               </div>
@@ -152,7 +155,7 @@ const Reviews = () => {
           {reviews.map((el) => (
             <li className="reviews__item" key={el.text}>
               <div className="reviews__photo">
-                <img src={el.photo} alt="photo" className="reviews__image" />
+                <img src={el.photo} alt="photography of clothes" className="reviews__image" />
               </div>
               <div className="reviews__info">
                 <span className="reviews__name">{el.name}</span>
@@ -161,10 +164,10 @@ const Reviews = () => {
                 <div className="rating-info">
                   {[...Array(5)].map((start, index) => {
                     return (
-                      <>
-                        <input type="radio" name="star-info" id={index} />
-                        <label htmlFor={index} className={`${index == rating ? 'label' : ''}`}>&#9733;</label>
-                      </>
+                      <Fragment key={index}>
+                        <input type="radio" name={el.text} id={index} defaultChecked={index === el.star} />
+                        <label htmlFor={index} >&#9733;</label>
+                      </Fragment>
                     )
                   })}
                 </div>

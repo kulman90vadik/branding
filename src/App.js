@@ -9,6 +9,7 @@ import Home from "./page/Home/Home";
 import Basket from "./page/Basket/Basket";
 import Favorites from "./page/Favorites/Favorites";
 import Reviews from './page/Reviews/Reviews';
+import NotFound from "./page/NotFound/NotFound";
 
 import { collectionHandler } from './redux/slices/collectionClise';
 
@@ -51,7 +52,7 @@ function App() {
         <Route path="basket" exact element={<Basket />} />
         <Route path="favorite" exact element={<Favorites />} />
         <Route path="reviews" exact element={<Reviews />} />
-        {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="*" element={<NotFound />} />
 
       </Routes>
     </>

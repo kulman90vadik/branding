@@ -1,0 +1,15 @@
+
+
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #ffa81b;
+  &__bg {
+    width: 100%;
+    background: #ffa81b url('../../../public/images/404.webp') center no-repeat;
+    background-size: auto;
+    height: 500px;
+  }
+}
