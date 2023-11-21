@@ -50,7 +50,7 @@ const Card = ({ item }) => {
             </clipPath>
           </defs>
         </svg>
-        <img className="card__image" src={item.image} alt="image" />
+        <img className="card__image" src={item.image} alt="hemd" />
       </div>
       <span className="card__name">{item.title}</span>
       <span className="card__price">{item.price} $</span>

@@ -1,21 +1,26 @@
 import './basket.scss';
 import { useState } from "react";
+// import { useDispatch } from "react-redux";
+// import { rrr} from "../../redux/slices/basketCollectionClise";
 
-
-const Counter = ({price}) => {
-
+const Counter = ({price, plusPriceCounter, minusPriceCounter}) => {
   const[totalSum, setTotalSum] = useState(price)
-  const[total, setTotal] = useState(0)
+  const[total, setTotal] = useState(1)
+  // const dispatch = useDispatch();
 
   const onClickIncrement = () => {
     setTotal(prev => prev + 1);
-    setTotalSum(prev => prev + price)
+    setTotalSum(prev => prev + price);
+    plusPriceCounter(price);
   }
+
+
   const onClickDecrement = () => {
-   let limit = 0;
+   let limit = 1;
    if(limit < total) {
     setTotal(prev => prev - 1)
-    setTotalSum(prev => prev - price)
+    setTotalSum(prev => prev - price);
+    minusPriceCounter(price);
    }
   }
 
@@ -41,7 +46,7 @@ const Counter = ({price}) => {
         +
       </button>
     </div>
-    <div className="basket__price">{totalSum}</div>  
+    <div className="basket__price">{totalSum} $</div>  
     </>
   );
 };

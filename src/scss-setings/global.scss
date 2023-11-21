@@ -16,9 +16,6 @@ body {
 
 .main {
     flex-grow: 1;
-    // @include max($lg) {
-    //     padding-left: 0;
-    // }
 }
 
 body {
@@ -26,13 +23,9 @@ body {
     background-color: $black; 
     font-weight: 500;
     font-size: 16px;
-    // line-height: 1.5;
     color: $text;
     display: flex;
     flex-direction: column;
-    // &--hidden {
-    //     overflow: hidden;
-    // }
     transition: background-color 0.3s ease-in;
 }
 

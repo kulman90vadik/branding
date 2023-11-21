@@ -1,5 +1,6 @@
 import Catalog from "./Catalog/Catalog";
-import Hero from './Hero/Hero'
+import Hero from './Hero/Hero';
+import Slider from './Slider/Slider';
 
 const Home = ({loading}) => {
 
@@ -7,6 +8,7 @@ const Home = ({loading}) => {
     <>
       <Hero />
       <Catalog  loading={loading}/>
+      <Slider />
     </>
   );
 
