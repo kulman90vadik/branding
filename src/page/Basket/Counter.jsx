@@ -1,7 +1,5 @@
 import './basket.scss';
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { rrr} from "../../redux/slices/basketCollectionClise";
 
 const Counter = ({price, plusPriceCounter, minusPriceCounter}) => {
   const[totalSum, setTotalSum] = useState(price)

@@ -5,6 +5,7 @@
   &__wrapper {
     clip-path: polygon(0 25%, 100% 0, 100% 75%, 0% 100%);
     background-color: $yellow;
+    margin-top: -85px;
   }
   .swiper {
     height: 630px;
