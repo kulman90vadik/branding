@@ -1,12 +1,21 @@
 // 3 ШАГ
-
-import { createSlice } from "@reduxjs/toolkit";
+import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+// thunkApi
+export const fetchCollection = createAsyncThunk('collection/fetchCollectionStatus', async (params) => {
+  const {categoryId, page, orderId} = params;
+  const {data} = await axios.get(`https://652cdf7ad0d1df5273efc824.mockapi.io/collection?${categoryId}${page}${orderId}`);
+    return data;
+  }
+)
 
 const initialState = {
   collection: [],
   countCategory: 0,
   priceOrderId: "",
   countPage: 1,
+
+  status: 'loading'
 };
 
 export const collectionSlice = createSlice({
@@ -37,7 +46,7 @@ export const collectionSlice = createSlice({
     chengePriceOrder: (state, id) => {
       state.priceOrderId = id.payload;
     },
-    onChengeSizes: (state, index, id) => {
+    onChengeSizes: (index) => {
       console.log(index.payload);
       // console.log(id);
     },
@@ -46,10 +55,26 @@ export const collectionSlice = createSlice({
       console.log(state.countPage);
     },
   },
+
+  extraReducers: {
+    [fetchCollection.pending]: (state) => {
+      state.status = 'loading';
+      state.collection = []
+    },
+    [fetchCollection.fulfilled]: (state, action) => {
+      state.collection = action.payload;
+      state.status = 'success';
+    },
+    [fetchCollection.rejected]: (state) => {
+      state.status = 'error';
+      state.collection = []
+    }
+  }
+
+
 });
 
 export const {
-  collectionHandler,
   onChengeBtn,
   onChengeLike,
   categoryChange,
