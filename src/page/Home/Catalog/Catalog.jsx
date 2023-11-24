@@ -1,14 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./catalog.scss";
 import Card from "./Card";
 import Loader from "../../../Loader/Loader";
 
-import {
-  categoryChange,
-  chengePriceOrder,
-} from "../../../redux/slices/collectionClise";
-import { useState } from "react";
+
+import { categoryChange, chengePriceOrder } from "../../../redux/slices/collectionClise";
 import Pagination from "../../../Pagination/Pagination";
 
 let category = ["All", "Sweater", "T-shirt", "Hemd"];
@@ -122,7 +119,11 @@ const Catalog = () => {
                   return obj.title.toLowerCase().includes(search.toLowerCase());
                 })
                 .map((item) => {
-                  return <Card item={item} key={item.id} />;
+                  return (
+                
+                      <Card item={item} key={item.id} />
+            
+                  )
                 })
             )}
           </>

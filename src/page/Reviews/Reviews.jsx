@@ -33,13 +33,13 @@ const Reviews = () => {
       reader.readAsDataURL(image);
     } else {
       setPreview(null);
-      setInputPhoto(null);
+      setInputPhoto('images/person.png');
     }
   }, [image]);
 
   const submitData = (e) => {
     e.preventDefault();
-    if(inputName !== '' && inputEmail !== '' && inputText !== '' && inputPhoto !== '') {
+    if(inputName !== '' && inputEmail !== '' && inputText !== '') {
         setReviews((prev) => {
           return [
             {

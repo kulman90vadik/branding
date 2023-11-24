@@ -50,7 +50,7 @@ const Header = () => {
           <div className="header__input">
             <img
               className="header__input-img"
-              src="images/search.png"
+              src="/images/search.png"
               alt="search"
             />
             {search && (
@@ -72,7 +72,7 @@ const Header = () => {
             />
           </div>
           <Link to="/" className="header__logo">
-            <img className="header__image" src="images/logo.png" alt="logo" />
+            <img className="header__image" src="/images/logo.png" alt="logo" />
           </Link>
           <div className="header__langs">
             <button className="header__lang header__lang--en btn-reset" type="button">
@@ -141,10 +141,10 @@ const Header = () => {
 
           <button className={`header__toggle btn-reset ${darkMode ? 'header__toggle--active' : ''}`} onClick={() => setDarkMode(!darkMode)}>
             <div className="header__toggle-left">
-              <img src="images/moon.svg" alt="moon" />
+              <img src="/images/moon.svg" alt="moon" />
             </div>
             <div className="header__toggle-left">
-              <img src="images/sun.svg" alt="sun" />
+              <img src="/images/sun.svg" alt="sun" />
             </div>
           </button>
 

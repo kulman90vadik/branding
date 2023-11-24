@@ -4,14 +4,15 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 
-import Header from "./Header/Header";
 import Home from "./page/Home/Home";
 import Basket from "./page/Basket/Basket";
 import Favorites from "./page/Favorites/Favorites";
 import Reviews from './page/Reviews/Reviews';
 import NotFound from "./page/NotFound/NotFound";
+import CartItem from "./page/CartItem/CartItem";
 
 import { fetchCollection } from './redux/slices/collectionClise';
+import Layouts from "./layouts/Layouts";
 
 const App = () => {
   // const [loading, setLoading] = useState(false);
@@ -79,16 +80,22 @@ const App = () => {
 
   return (
     <>
-      <Header />
+
       <Routes>
 
-        <Route path="/" exact element={<Home />} />
-        <Route path="basket" exact element={<Basket />} />
-        <Route path="favorite" exact element={<Favorites />} />
-        <Route path="reviews" exact element={<Reviews />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<Layouts />}>
+          
+          <Route path="" exact element={<Home />} />
+          <Route path="basket" exact element={<Basket />} />
+          <Route path="favorite" exact element={<Favorites />} />
+          <Route path="reviews" exact element={<Reviews />} />
+          <Route path="item/:id" exact element={<CartItem />} />
+          <Route path="*" element={<NotFound />} />
+
+        </Route>
 
       </Routes>
+
     </>
   );
 }
