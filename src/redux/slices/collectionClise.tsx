@@ -9,12 +9,29 @@ export const fetchCollection = createAsyncThunk('collection/fetchCollectionStatu
   }
 )
 
-const initialState = {
+type CollectionItem = {
+  id: number;
+  title: string;
+  price: number;
+  activeBtn: boolean;
+  image: string;
+  activeLike: boolean;
+  sizes: { size: string; activeSize: boolean }[];
+};
+
+interface CollectionState {
+  collection: CollectionItem[];
+  countCategory: number;
+  priceOrderId: string;
+  countPage: number;
+  status: string;
+}
+
+const initialState: CollectionState = {
   collection: [],
   countCategory: 0,
   priceOrderId: "",
   countPage: 1,
-
   status: 'loading'
 };
 

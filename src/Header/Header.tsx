@@ -1,5 +1,5 @@
 import "./header.scss";
-import React, { useRef, useCallback, useState, useEffect } from "react";
+import { useRef, useCallback, useState, useEffect } from "react";
 import debounce from "lodash.debounce";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,7 +8,7 @@ import Navigation from "./Navigation/Navigation";
 
 const Header = () => {
   const [valueSearch, setValueSearch] = useState('');
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
   const search = useSelector((state) => state.search.search);
   const count = useSelector((state) => state.basketCollection.count);
   const countFavorutes = useSelector((state) => state.favoritesCollection.count);
@@ -19,17 +19,20 @@ const Header = () => {
   const close = () => {
     dispatch(closeSearchHandler());
     setValueSearch('');
-    inputRef.current.focus();
+    // if(inputRef.current) {
+    //   inputRef.current.focus();
+    // }
+    inputRef.current?.focus();
   }
 
   const searchHandler = useCallback(
-    debounce((value) => {
+    debounce((value: string) => {
       dispatch(updateSearchValue(value))
     }, 600),
     [],
   )
 
-  const clickSearchHandler = (e) => {
+  const clickSearchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValueSearch(e.target.value);
     searchHandler(e.target.value);
   }

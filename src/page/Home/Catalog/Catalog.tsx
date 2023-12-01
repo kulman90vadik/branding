@@ -9,14 +9,22 @@ import { categoryChange, chengePriceOrder } from "../../../redux/slices/collecti
 import Pagination from "../../../Pagination/Pagination";
 
 let category = ["All", "Sweater", "T-shirt", "Hemd"];
-let sortPrice = [
+
+
+let sortPrice: {title: string, id: string}[] = [
   { title: "Price", id: "" },
   { title: "Ascending", id: "asc" },
   { title: "Descending", id: "desc" },
 ];
 
+type CollectionItem = {
+  id: number, title: string, price: number, activeBtn: boolean,  activeLike: boolean, image: string, sizes: {size: string, activeSize: boolean}[]
+}
+
 const Catalog = () => {
-  const refPrice = useRef();
+
+  const refPrice = useRef <HTMLDivElement>(null);
+
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [count, setCount] = useState(0);
@@ -25,15 +33,17 @@ const Catalog = () => {
   const search = useSelector((state) => state.search.search);
   const countCategory = useSelector((state) => state.collection.countCategory);
 
-  const clickItemPrice = (index, id) => {
+  const clickItemPrice = (index: number, id: string) => {
     setOpen(!open);
     setCount(index);
     dispatch(chengePriceOrder(id));
   };
 
   useEffect(() => {
-    const clickSortHandler = (event) => {
-      if (!event.composedPath().includes(refPrice.current)) {
+    // const clickSortHandler: EventListener  = (event: MouseEventInit) => {
+    const clickSortHandler = (event: MouseEvent) => {
+      const e = event as MouseEvent;
+      if (refPrice.current && !e.composedPath().includes(refPrice.current)) {
         setOpen(false);
       }
     };
@@ -44,6 +54,7 @@ const Catalog = () => {
   }, []);
 
   return (
+
     <section className="catalog">
       <div className="catalog__container">
         <div className="catalog__inner">
@@ -115,12 +126,13 @@ const Catalog = () => {
               [...Array(10)].map((item, i) => <Loader key={i} />)
             ) : (
               collection
-                .filter((obj) => {
+                .filter((obj: CollectionItem) => {
                   return obj.title.toLowerCase().includes(search.toLowerCase());
                 })
-                .map((item) => {
+                .map((item: CollectionItem) => {
                   return (
-                
+              
+
                       <Card item={item} key={item.id} />
             
                   )
@@ -132,6 +144,7 @@ const Catalog = () => {
         <Pagination />
       </div>
     </section>
+
   );
 };
 

@@ -15,7 +15,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([
     {
       name: "Franz",
-      email: "franz@life.de",
+      email: "franz@live.de",
       text: "Contrary to popular belief, Lorem Ipsum is not simply random text. Tof the word in classical literature, discovered the undoubtable source.",
       time: new Date(),
       photo: "images/person.png",

@@ -15,7 +15,9 @@ import { fetchCollection } from './redux/slices/collectionClise';
 import Layouts from "./layouts/Layouts";
 
 const App = () => {
-  // const [loading, setLoading] = useState(false);
+
+  // type CollectionItem = {id: string, title: string, price: string, activeBtn: boolean, sizes: {size: string, activeSize: boolean}[]}
+
   const dispatch = useDispatch();
   const search = useSelector((state) => state.search.search);
   const countCategory = useSelector((state) => state.collection.countCategory);
@@ -85,11 +87,11 @@ const App = () => {
 
         <Route path="/" element={<Layouts />}>
           
-          <Route path="" exact element={<Home />} />
-          <Route path="basket" exact element={<Basket />} />
-          <Route path="favorite" exact element={<Favorites />} />
-          <Route path="reviews" exact element={<Reviews />} />
-          <Route path="item/:id" exact element={<CartItem />} />
+          <Route path="" element={<Home />} />
+          <Route path="basket" element={<Basket />} />
+          <Route path="favorite" element={<Favorites />} />
+          <Route path="reviews" element={<Reviews />} />
+          <Route path="item/:id" element={<CartItem />} />
           <Route path="*" element={<NotFound />} />
 
         </Route>
