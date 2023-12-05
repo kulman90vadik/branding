@@ -5,7 +5,7 @@ const color = ["white", "yellow", "red", "black"];
 const ColorSelect = () => {
   const[open, setOpen] = useState(false);
   const[count, setCount] = useState(0);
-  const clickSelectItem = (el, index) => {
+  const clickSelectItem = (index: number) => {
     setCount(index);
     setOpen(!open);
   }
@@ -22,7 +22,7 @@ const ColorSelect = () => {
       </button>
       
       <ul className='basket-select__list' style={{ maxHeight: open ? '500px' : '0px' }}>
-        {color.map((el, index) => <li className="basket-select__item" onClick={() => clickSelectItem(el, index)} key={el}>{el}</li>)}
+        {color.map((el, index) => <li className="basket-select__item" onClick={() => clickSelectItem(index)} key={el}>{el}</li>)}
       </ul>
   </div>
   );

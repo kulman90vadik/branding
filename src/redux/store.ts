@@ -14,3 +14,8 @@ export const store = configureStore({
     favoritesCollection: favoritesCollectionReducer
   },
 })
+
+export type RootState = ReturnType<typeof store.getState>
+// использовать типизацию state...
+// import {RootState} from './redux/store'
+// const search = useSelector((state: RootState) => state.search.search);

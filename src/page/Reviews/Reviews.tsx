@@ -1,18 +1,20 @@
-import { useState, useRef, useEffect, Fragment } from "react";
+import { useState, useRef, useEffect, Fragment, ChangeEvent, FormEvent } from "react";
 import "./reviews.scss";
 
 const Reviews = () => {
-  const fileInputRef = useRef();
-  const [image, setImage] = useState();
-  const [preview, setPreview] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [image, setImage] = useState<string | any>();
+  const [preview, setPreview] = useState<any>();
   const [inputName, setInputName] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [inputText, setInputText] = useState("");
-  const [inputPhoto, setInputPhoto] = useState("");
+  const [inputPhoto, setInputPhoto] = useState<any>("");
+  const [rating, setRating] = useState<number>(0);
+  
 
-  const [rating, setRating] = useState(0);
-
-  const [reviews, setReviews] = useState([
+  type ReviewsType = { name: string, email: string, text: string, time: any, photo: string, star: number }[];
+  
+  const [reviews, setReviews] = useState<ReviewsType>([
     {
       name: "Franz",
       email: "franz@live.de",
@@ -37,7 +39,7 @@ const Reviews = () => {
     }
   }, [image]);
 
-  const submitData = (e) => {
+  const submitData = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if(inputName !== '' && inputEmail !== '' && inputText !== '') {
         setReviews((prev) => {
@@ -59,7 +61,7 @@ const Reviews = () => {
         setInputText("");
         setInputPhoto("");
         setPreview("");
-        setRating("");
+        // setRating(-1);
     }
   };
 
@@ -103,9 +105,9 @@ const Reviews = () => {
             <label
               htmlFor="file"
               className="reviews__label reviews__label--file"
-              onClick={(event) => {
+              onClick={(event: React.MouseEvent<HTMLLabelElement>) => {
                 event.preventDefault();
-                fileInputRef.current.click();
+                fileInputRef.current?.click();
               }}
             >
               Your photo
@@ -121,12 +123,18 @@ const Reviews = () => {
               accept="image/*"
               ref={fileInputRef}
               style={{ display: "none" }}
-              onChange={(event) => {
-                const file = event.target.files[0];
+              onChange={(event: ChangeEvent) => {
+
+                // const e = event as ChangeEvent;
+                // const file = e.target.files[0];
+                const e = event.target as HTMLInputElement;
+                const file: File = (e.files as FileList)[0];
+
+
                 if (file && file.type.substr(0, 5) === "image") {
                   setImage(file);
                 } else {
-                  setImage(null);
+                  setImage('');
                 }
               }}
             />
@@ -136,8 +144,8 @@ const Reviews = () => {
                 {[...Array(5)].map((start, index) => {
                   return (
                     <Fragment key={index}>
-                      <input type="radio" name="star" id={index} onClick={() => setRating(index)}/>
-                      <label htmlFor={index} key={index}>&#9733;</label>
+                      <input type="radio" name="star" id={String(index)} onClick={() => setRating(index)}/>
+                      <label htmlFor={String(index)} key={index}>&#9733;</label>
                     </Fragment>
                   )
                 })}
@@ -165,8 +173,8 @@ const Reviews = () => {
                   {[...Array(5)].map((start, index) => {
                     return (
                       <Fragment key={index}>
-                        <input type="radio" name={el.text} id={index} defaultChecked={index === el.star} />
-                        <label htmlFor={index} >&#9733;</label>
+                        <input type="radio" name={el.text} id={String(index)} defaultChecked={index === el.star} />
+                        <label htmlFor={String(index)} >&#9733;</label>
                       </Fragment>
                     )
                   })}

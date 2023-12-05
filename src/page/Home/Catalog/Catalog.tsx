@@ -3,35 +3,46 @@ import { useSelector, useDispatch } from "react-redux";
 import "./catalog.scss";
 import Card from "./Card";
 import Loader from "../../../Loader/Loader";
+import { RootState } from "../../../redux/store";
 
-
-import { categoryChange, chengePriceOrder } from "../../../redux/slices/collectionClise";
+import {
+  categoryChange,
+  chengePriceOrder,
+} from "../../../redux/slices/collectionClise";
 import Pagination from "../../../Pagination/Pagination";
 
 let category = ["All", "Sweater", "T-shirt", "Hemd"];
 
-
-let sortPrice: {title: string, id: string}[] = [
+let sortPrice: { title: string; id: string }[] = [
   { title: "Price", id: "" },
   { title: "Ascending", id: "asc" },
   { title: "Descending", id: "desc" },
 ];
 
 type CollectionItem = {
-  id: number, title: string, price: number, activeBtn: boolean,  activeLike: boolean, image: string, sizes: {size: string, activeSize: boolean}[]
-}
+  id: number;
+  title: string;
+  price: number;
+  activeBtn: boolean;
+  activeLike: boolean;
+  image: string;
+  sizes: { size: string; activeSize: boolean }[];
+};
 
 const Catalog = () => {
-
-  const refPrice = useRef <HTMLDivElement>(null);
+  const refPrice = useRef<HTMLDivElement>(null);
 
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [count, setCount] = useState(0);
-  const collection = useSelector((state) => state.collection.collection);
-  const status = useSelector((state) => state.collection.status);
-  const search = useSelector((state) => state.search.search);
-  const countCategory = useSelector((state) => state.collection.countCategory);
+  const collection = useSelector(
+    (state: RootState) => state.collection.collection
+  );
+  const status = useSelector((state: RootState) => state.collection.status);
+  const search = useSelector((state: RootState) => state.search.search);
+  const countCategory = useSelector(
+    (state: RootState) => state.collection.countCategory
+  );
 
   const clickItemPrice = (index: number, id: string) => {
     setOpen(!open);
@@ -54,7 +65,6 @@ const Catalog = () => {
   }, []);
 
   return (
-
     <section className="catalog">
       <div className="catalog__container">
         <div className="catalog__inner">
@@ -114,12 +124,8 @@ const Catalog = () => {
           <>
             {status === "error" ? (
               <div className="catalog__error">
-                <span>
-                  There was an error receiving goods.
-                </span>
-                <p>
-                  Please try again later
-                </p>
+                <span>There was an error receiving goods.</span>
+                <p>Please try again later</p>
                 <div>&#128554;</div>
               </div>
             ) : status === "loading" ? (
@@ -130,12 +136,7 @@ const Catalog = () => {
                   return obj.title.toLowerCase().includes(search.toLowerCase());
                 })
                 .map((item: CollectionItem) => {
-                  return (
-              
-
-                      <Card item={item} key={item.id} />
-            
-                  )
+                  return <Card item={item} key={item.id} />;
                 })
             )}
           </>
@@ -144,7 +145,6 @@ const Catalog = () => {
         <Pagination />
       </div>
     </section>
-
   );
 };
 

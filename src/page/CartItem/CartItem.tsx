@@ -7,7 +7,15 @@ const CartItem = () => {
   const {id} = useParams();
   const navigate = useNavigate();
   // useParams - то что будет содержать строчка поиска
-  const[item, setItem] = useState();
+  const[item, setItem] = useState <{  
+    id: number;
+    title: string;
+    price: number;
+    activeBtn: boolean;
+    image: string;
+    activeLike: boolean;
+    sizes: { size: string; activeSize: boolean }[]
+  }>();
 
   useEffect(() => {
 

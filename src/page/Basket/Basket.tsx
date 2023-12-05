@@ -3,30 +3,36 @@ import "./basket.scss";
 import Counter from "./Counter";
 
 import ColorSelect from "./ColorSelect";
-import {
-  deleteCartBasket,
-  plusTotalPrice,
-  minusTotalPrice,
-} from "../../redux/slices/basketCollectionClise";
+import { deleteCartBasket, plusTotalPrice, minusTotalPrice} from "../../redux/slices/basketCollectionClise";
 import { onChengeBtn } from "../../redux/slices/collectionClise";
+import {RootState} from '../../redux/store'
 //
 const Basket = () => {
-  const basketCollection = useSelector(
-    (state) => state.basketCollection.basketCollection
-  );
-  const total = useSelector((state) => state.basketCollection.tottal);
+
+  type BasketItem = {
+    id: number;
+    title: string;
+    price: number;
+    activeBtn: boolean;
+    image: string;
+    activeLike: boolean;
+    sizes: { size: string; activeSize: boolean }[];
+  };
+
+  const basketCollection = useSelector((state: RootState) => state.basketCollection.basketCollection);
+  const total = useSelector((state: RootState) => state.basketCollection.tottal);
   const dispatch = useDispatch();
 
-  const delCart = (obj) => {
+  const delCart = (obj: BasketItem) => {
     dispatch(deleteCartBasket(obj));
     dispatch(onChengeBtn(obj));
   };
 
-  const plusPriceCounter = (price) => {
+  const plusPriceCounter = (price: number) => {
     // console.log(price);
     dispatch(plusTotalPrice(price));
   };
-  const minusPriceCounter = (price) => {
+  const minusPriceCounter = (price: number) => {
     dispatch(minusTotalPrice(price));
   };
 

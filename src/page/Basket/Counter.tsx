@@ -1,7 +1,13 @@
 import './basket.scss';
 import { useState } from "react";
 
-const Counter = ({price, plusPriceCounter, minusPriceCounter}) => {
+type PropsCounter = {
+  price: number;
+  plusPriceCounter: (price: number) => void;
+  minusPriceCounter: (price: number) => void;
+}
+
+const Counter: React.FC <PropsCounter> = ({price, plusPriceCounter, minusPriceCounter}) => {
   const[totalSum, setTotalSum] = useState(price)
   const[total, setTotal] = useState(1)
   // const dispatch = useDispatch();

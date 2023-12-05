@@ -5,16 +5,18 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { closeSearchHandler, updateSearchValue } from "../redux/slices/searchClise";
 import Navigation from "./Navigation/Navigation";
+import {RootState} from '../redux/store'
 
 const Header = () => {
   const [valueSearch, setValueSearch] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
-  const search = useSelector((state) => state.search.search);
-  const count = useSelector((state) => state.basketCollection.count);
-  const countFavorutes = useSelector((state) => state.favoritesCollection.count);
+  const search = useSelector((state: RootState) => state.search.search);
+  const count = useSelector((state: RootState) => state.basketCollection.count);
+  const countFavorutes = useSelector((state: RootState) => state.favoritesCollection.count);
   const[darkMode, setDarkMode] = useState(false);
   
   const dispatch = useDispatch();
+  
 
   const close = () => {
     dispatch(closeSearchHandler());

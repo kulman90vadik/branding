@@ -2,15 +2,8 @@ import "./card.scss";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../../redux/slices/basketCollectionClise";
-import {
-  addToFavorites,
-  onChengeLikeBasket,
-  onChengeBtnBasket,
-} from "../../../redux/slices/favoritesClise";
-import {
-  onChengeBtn,
-  onChengeLike,
-} from "../../../redux/slices/collectionClise";
+import { addToFavorites, onChengeLikeBasket, onChengeBtnBasket } from "../../../redux/slices/favoritesClise";
+import { onChengeBtn, onChengeLike } from "../../../redux/slices/collectionClise";
 import Sizes from "./Sizes";
 
 type CollectionItemProp = {
@@ -88,7 +81,7 @@ const Card: React.FC<CollectionItemProp> = ({ item }) => {
       <span className="card__price">{item.price} $</span>
       <div className="card__block">
         <ul className="card__list">
-          <Sizes sizes={item.sizes} id={item.id} />
+          <Sizes sizes={item.sizes} />
         </ul>
         <button
           className={`card__btn btn-reset ${

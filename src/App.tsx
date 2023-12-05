@@ -1,5 +1,4 @@
 import "./scss-setings/includes.scss";
-// import axios from 'axios';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
@@ -14,27 +13,26 @@ import CartItem from "./page/CartItem/CartItem";
 import { fetchCollection } from './redux/slices/collectionClise';
 import Layouts from "./layouts/Layouts";
 
+import {RootState} from './redux/store'
+
+
 const App = () => {
-
   // type CollectionItem = {id: string, title: string, price: string, activeBtn: boolean, sizes: {size: string, activeSize: boolean}[]}
+  const dispatch = useDispatch<any>();
+  const search = useSelector((state: RootState) => state.search.search);
+  const countCategory = useSelector((state: RootState) => state.collection.countCategory);
+  const priceOrderId = useSelector((state: RootState) => state.collection.priceOrderId);
+  const countPage = useSelector((state: RootState) => state.collection.countPage);
 
-  const dispatch = useDispatch();
-  const search = useSelector((state) => state.search.search);
-  const countCategory = useSelector((state) => state.collection.countCategory);
-  const priceOrderId = useSelector((state) => state.collection.priceOrderId);
-  const countPage = useSelector((state) => state.collection.countPage);
-
+  
   useEffect( () => {
-
+    
     // (async () => {
-
       // setLoading(true);
-
       let categoryId = countCategory ? `category=${countCategory}` : "";
       let orderId = priceOrderId ? `&sortBy=price&order=${priceOrderId}` : '';
       let page = `&page=${countPage}&limit=5`;
       dispatch(fetchCollection({categoryId, page, orderId}));
-
 
 //FETCH - оюычный запрос fetch
 
@@ -73,12 +71,9 @@ const App = () => {
         // console.log('Выполниться в любом случаи');
       // }
 
-
     // }) ();
 
   }, [search, countCategory, priceOrderId, countPage])
-
-
 
   return (
     <>
