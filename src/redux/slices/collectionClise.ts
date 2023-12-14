@@ -23,12 +23,21 @@ type CollectionItem = {
   sizes: { size: string; activeSize: boolean }[];
 };
 
+
+export enum Status {
+  LOADING = 'loading',
+  SUCCESS = 'success',
+  ERROR = 'error',
+}
+
+
 interface CollectionState {
   collection: CollectionItem[];
   countCategory: number;
   priceOrderId: string;
   countPage: number;
-  status: 'loading' | 'success' | 'error';
+  // status: 'loading' | 'success' | 'error';
+  status: Status;
 }
 
 const initialState: CollectionState = {
@@ -36,8 +45,9 @@ const initialState: CollectionState = {
   countCategory: 0,
   priceOrderId: '',
   countPage: 1,
-  status: 'loading'
+  status: Status.LOADING
 };
+
 
 export const collectionSlice = createSlice({
   name: "collection",
@@ -79,15 +89,15 @@ export const collectionSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(fetchCollection.pending, (state, action) => {
-      state.status = 'loading';
+      state.status = Status.LOADING;
       state.collection = [];
     });
     builder.addCase(fetchCollection.fulfilled, (state, action) => {
       state.collection = action.payload;
-      state.status = 'success';
+      state.status = Status.SUCCESS;
     });
     builder.addCase(fetchCollection.rejected, (state, action) => {
-      state.status = 'error';
+      state.status = Status.ERROR;
       state.collection = []
     });
   }

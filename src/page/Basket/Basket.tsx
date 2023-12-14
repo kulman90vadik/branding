@@ -26,10 +26,12 @@ const Basket = () => {
   const delCart = (obj: BasketItem) => {
     dispatch(deleteCartBasket(obj));
     dispatch(onChengeBtn(obj));
+    // console.log(obj);
   };
 
+
   const plusPriceCounter = (price: number) => {
-    // console.log(price);
+    console.log(price);
     dispatch(plusTotalPrice(price));
   };
   const minusPriceCounter = (price: number) => {
@@ -105,8 +107,8 @@ const Basket = () => {
 
               <div className="basket__checkout">
                 <span className="basket__title">Checkout: {total}</span>
-                <div className="basket__delivery">Delivery: 10 $</div>
-                <div className="basket__total">Total: {total + 10}</div>
+                {/* <div className="basket__delivery">Delivery: 10 $</div> */}
+                {/* <div className="basket__total">Total: {total + 10}</div> */}
                 <button className="basket__button btn-reset" type="button">
                   Checkout
                 </button>

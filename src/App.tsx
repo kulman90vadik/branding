@@ -1,6 +1,6 @@
 import "./scss-setings/includes.scss";
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 
 import Home from "./page/Home/Home";
@@ -13,12 +13,11 @@ import CartItem from "./page/CartItem/CartItem";
 import { fetchCollection } from './redux/slices/collectionClise';
 import Layouts from "./layouts/Layouts";
 
-import {RootState} from './redux/store'
-
+import { useAppDispatch, RootState } from "./redux/store";
 
 const App = () => {
   // type CollectionItem = {id: string, title: string, price: string, activeBtn: boolean, sizes: {size: string, activeSize: boolean}[]}
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
   const search = useSelector((state: RootState) => state.search.search);
   const countCategory = useSelector((state: RootState) => state.collection.countCategory);
   const priceOrderId = useSelector((state: RootState) => state.collection.priceOrderId);
